@@ -137,7 +137,7 @@ jobs:
           chmod +x ./tools/bin/fuse.erofs
           [[ -e vendor.img ]] && ./tools/bin/fuse.erofs "vendor.img" "tmp_out" 
           mkdir -p vendor/vendor/tee_${{ matrix.code }}
-          sudo su -c "cp -r -a --preserve=all tmp_out/tee vendor/vendor/tee_${{ matrix.code }}"
+          sudo su -c "cp -a --preserve=all tmp_out/tee vendor/vendor/tee_${{ matrix.code }}"
           fusermount -u tmp_out
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
