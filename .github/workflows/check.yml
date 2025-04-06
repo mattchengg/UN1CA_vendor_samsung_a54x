@@ -159,7 +159,7 @@ jobs:
           echo ${{ env.latest_version }} > current.${{ matrix.model }}_${{ matrix.omc }}
           git add current.${{ matrix.model }}_${{ matrix.omc }}
           git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
-          git add vendor/tee_${{ matrix.code }}
+          git add vendor
           git commit -m "Update vendor/tee and firmware"
           git push origin ${{github.ref}}
 
