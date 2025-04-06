@@ -150,22 +150,10 @@ jobs:
           echo ${{ env.latest_version }} > current.${{ matrix.model }}_${{ matrix.omc }}
           git add current.${{ matrix.model }}_${{ matrix.omc }}
           git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
-          git tag "${{ env.latest_shortversion }}_${{ matrix.omc }}"
-
-      - name: Push changes to repo
-        if: env.need_update == 1
-        uses: ad-m/github-push-action@master
-        with:
-          tags: true
-          github_token: ${{ secrets.TOKEN }}
-
-      - name: Push vendor/tee to vendor/vendor/tee
-        if: env.need_update == 1
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
           git add vendor/vendor/tee_${{ matrix.code }}
           git commit -m "Update vendor/tee"
           git push origin ${{github.ref}}
+
+
 
 
