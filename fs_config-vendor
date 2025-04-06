@@ -1,4 +1,11 @@
-vendor/etc/init/vendor_blobs.rc 0 0 644 capabilities=0x0
+vendor/etc/init/vendor_blobs.rc 0 0 644 capabilities=0x0 
+vendor/firmware/asia 0 2000 755 capabilities=0x0
+vendor/firmware/asia/AIE.bin 0 0 644 capabilities=0x0
+vendor/firmware/asia/calliope_sram.bin 0 0 644 capabilities=0x0
+vendor/firmware/asia/mfc_fw.bin 0 0 644 capabilities=0x0
+vendor/firmware/asia/os.checked.bin 0 0 644 capabilities=0x0
+vendor/firmware/asia/pablo_icpufw.bin 0 0 644 capabilities=0x0
+vendor/firmware/asia/vts.bin 0 0 644 capabilities=0x0
 vendor/firmware/eur 0 2000 755 capabilities=0x0
 vendor/firmware/eur/AIE.bin 0 0 644 capabilities=0x0
 vendor/firmware/eur/calliope_sram.bin 0 0 644 capabilities=0x0
