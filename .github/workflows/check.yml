@@ -14,10 +14,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # A54X_CHN_OPEN
-          - model: "SM-A5460"
-            csc: "CHC"
-            omc: "CHC"
           # A54X_CHN_HK
           - model: "SM-A5460"
             csc: "BRI"
@@ -30,44 +26,6 @@ jobs:
           - model: "SM-A546E"
             csc: "INS"
             omc: "ODM"
-          - model: "SM-A546E"
-            csc: "EGY"
-            omc: "OJM"
-          - model: "SM-A546E"
-            csc: "XID"
-            omc: "OLE"
-          - model: "SM-A546E"
-            csc: "XSA"
-            omc: "OLM"
-          - model: "SM-A546E"
-            csc: "PEO"
-            omc: "OWB"
-          - model: "SM-A546E"
-            csc: "ZTO"
-            omc: "OWO"
-          - model: "SM-A546E"
-            csc: "SEK"
-            omc: "OXE"
-          # A54X_USA_SINGLEX
-          - model: "SM-A546U"
-            csc: "CCT"
-            omc: "OYN"
-          # A54X_USA_OPEN
-          - model: "SM-A546U1"
-            csc: "XAA"
-            omc: "OYM"
-          # A54X_CAN_SINGLE
-          - model: "SM-A546W"
-            csc: "XAC"
-            omc: "OYV"
-          # A54X_KOR_SKT
-          - model: "SM-A546S"
-            csc: "SKC"
-            omc: "SKC"
-          - model: "SM-A546V"
-            csc: "PCT"
-            omc: "OWA"
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -219,21 +177,4 @@ jobs:
           tags: true
           github_token: ${{ secrets.TOKEN }}
 
-      - name: Upload release assets
-        if: env.need_update == 1
-        uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          body_path: versions.txt
-          tag_name: "${{ env.latest_shortversion }}_${{ matrix.omc }}"
-          name: "${{ env.latest_shortversion }} - ${{ matrix.model }} - ${{ matrix.omc }}"
-          files: |
-            ${{ env.bl_tar }}
-            ${{ env.cp_tar }}
-            ${{ env.home_csc_tar }}
-            ${{ env.latest_shortversion }}_kernel.tar
-            ${{ env.pit_file }}
-            ${{ env.latest_shortversion }}_patched_vbmeta.tar
-            ${{ env.latest_shortversion }}_vendor.zip
-            ${{ env.latest_shortversion }}_vendor_dlkm.zip
+
