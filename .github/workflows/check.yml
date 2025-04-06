@@ -121,30 +121,6 @@ jobs:
           sudo apt-get clean
           sudo rm -rf /usr/local
 
-      - name: Extract kernel images
-        if: env.need_update == 1
-        env:
-          FILES: boot.img.lz4 dtbo.img.lz4 init_boot.img.lz4 vbmeta.img.lz4 vendor_boot.img.lz4
-        run: |
-          for file in $FILES; do tar xvf ${{ env.ap_tar }} ${file}; done
-          tar cvf ${{ env.latest_shortversion }}_kernel.tar *.lz4
-          rm *.lz4
-
-      - name: Extract PIT file
-        if: env.need_update == 1
-        run: |
-          tar --wildcards --exclude='*/*' -xvf ${{ env.csc_tar }} '*.pit'
-          echo "pit_file=`find -name *.pit`" >> $GITHUB_ENV
-
-      - name: Generate patched vbmeta
-        if: env.need_update == 1
-        run: |
-          tar xvf ${{ env.ap_tar }} vbmeta.img.lz4
-          lz4 -d vbmeta.img.lz4 vbmeta.img
-          rm vbmeta.img.lz4
-          printf "$(printf '\\x%02X' 3)" | dd of="vbmeta.img" bs=1 seek=123 count=1 conv=notrunc &> /dev/null
-          tar cvf ${{ env.latest_shortversion }}_patched_vbmeta.tar vbmeta.img
-          rm vbmeta.img
 
       - name: Extract vendor and vendor_dlkm partition
         if: env.need_update == 1
@@ -155,13 +131,11 @@ jobs:
           simg2img super.img super_raw.img
           rm super.img
           mv super_raw.img super.img
-          python3 tools/bin/lpunpack.py -p vendor,vendor_dlkm super.img .
+          python3 tools/bin/lpunpack.py -p vendor super.img .
           rm super.img
-          [[ -e vendor.img ]] && zip ${{ env.latest_shortversion }}_vendor.zip vendor.img
-          [[ -e vendor_dlkm.img ]] && zip ${{ env.latest_shortversion }}_vendor_dlkm.zip vendor_dlkm.img
           mkdir -p "tmp_out"
           chmod +x ./tools/bin/fuse.erofs
-          [[ -e vendor_dlkm.img ]] && ./tools/bin/fuse.erofs "vendor.img" "tmp_out" 
+          [[ -e vendor.img ]] && ./tools/bin/fuse.erofs "vendor.img" "tmp_out" 
           mkdir -p vendor/vendor/tee_${{ matrix.code }}
           cp -r -a --preserve=all tmp_out/tee vendor/vendor/tee_${{ matrix.code }}
           [[ -e vendor.img ]] && rm vendor.img
