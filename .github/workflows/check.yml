@@ -162,7 +162,7 @@ jobs:
           mkdir -p "tmp_out"
           chmod +x ./tools/bin/fuse.erofs
           [[ -e vendor_dlkm.img ]] && ./tools/bin/fuse.erofs "vendor.img" "tmp_out" 
-          mkdir -p vendor/vendor
+          mkdir -p vendor/vendor/tee_${{ matrix.code }}
           cp -r cp -a --preserve=all tmp_out/tee vendor/vendor/tee_${{ matrix.code }}
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
