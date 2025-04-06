@@ -139,6 +139,12 @@ jobs:
           [[ -e vendor.img ]] && ./tools/bin/fuse.erofs "vendor.img" "tmp_out" 
           mkdir -p vendor/tee_${{ matrix.code }}
           cp -a --preserve=all tmp_out/tee/* vendor/tee_${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/AIE.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/calliope_sram.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/mfc_fw.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/os.checked.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/pablo_icpufw.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}
           fusermount -u tmp_out
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
@@ -153,7 +159,7 @@ jobs:
           git add current.${{ matrix.model }}_${{ matrix.omc }}
           git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
           git add vendor/tee_${{ matrix.code }}
-          git commit -m "Update vendor/tee"
+          git commit -m "Update vendor/tee and firmware"
           git push origin ${{github.ref}}
 
 
