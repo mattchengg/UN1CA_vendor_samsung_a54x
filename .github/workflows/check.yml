@@ -18,14 +18,17 @@ jobs:
           - model: "SM-A5460"
             csc: "BRI"
             omc: "OZS"
+            code: "asia"
           # A54X_EUR_OPEN
           - model: "SM-A546B"
             csc: "EUX"
             omc: "OXM"
+            code: "eur"
           # A54X_SEA_OPEN
           - model: "SM-A546E"
             csc: "INS"
             omc: "ODM"
+            code: "sea"
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -156,6 +159,10 @@ jobs:
           rm super.img
           [[ -e vendor.img ]] && zip ${{ env.latest_shortversion }}_vendor.zip vendor.img
           [[ -e vendor_dlkm.img ]] && zip ${{ env.latest_shortversion }}_vendor_dlkm.zip vendor_dlkm.img
+          mkdir -p "tmp_out"
+          [[ -e vendor_dlkm.img ]] && fuse.erofs "vendor.img" "tmp_out" 
+          mkdir -p vendor/vendor
+          cp -r cp -a --preserve=all tmp_out/tee vendor/vendor/tee_${{ matrix.code }}
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
 
@@ -176,5 +183,14 @@ jobs:
         with:
           tags: true
           github_token: ${{ secrets.TOKEN }}
+
+      - name: Push vendor/tee to vendor/vendor/tee
+        if: env.need_update == 1
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add vendor/vendor/tee_${{ matrix.code }}
+          git commit -m "Update vendor/tee"
+          git push origin ${{github.ref}}
 
 
