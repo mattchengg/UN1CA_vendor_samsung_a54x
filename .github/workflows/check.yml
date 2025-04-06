@@ -138,7 +138,7 @@ jobs:
           chmod +x ./tools/bin/fuse.erofs
           [[ -e vendor.img ]] && ./tools/bin/fuse.erofs "vendor.img" "tmp_out" 
           mkdir -p vendor/vendor/tee_${{ matrix.code }}
-          cp -a --preserve=all tmp_out/tee/* vendor/vendor/tee_${{ matrix.code }}
+          cp -a --preserve=all tmp_out/tee/* vendor/tee_${{ matrix.code }}
           fusermount -u tmp_out
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
@@ -152,7 +152,7 @@ jobs:
           echo ${{ env.latest_version }} > current.${{ matrix.model }}_${{ matrix.omc }}
           git add current.${{ matrix.model }}_${{ matrix.omc }}
           git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
-          git add vendor/vendor/tee_${{ matrix.code }}
+          git add vendor/tee_${{ matrix.code }}
           git commit -m "Update vendor/tee"
           git push origin ${{github.ref}}
 
