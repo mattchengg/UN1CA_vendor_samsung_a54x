@@ -138,6 +138,7 @@ jobs:
           chmod +x ./tools/bin/fuse.erofs
           [[ -e vendor.img ]] && ./tools/bin/fuse.erofs "vendor.img" "tmp_out" 
           mkdir -p vendor/tee_${{ matrix.code }}
+          mkdir -p vendor/firmware/${{ matrix.code }}
           cp -a --preserve=all tmp_out/tee/* vendor/tee_${{ matrix.code }}
           cp -a --preserve=all tmp_out/firmware/AIE.bin vendor/firmware/${{ matrix.code }}
           cp -a --preserve=all tmp_out/firmware/calliope_sram.bin vendor/firmware/${{ matrix.code }}
