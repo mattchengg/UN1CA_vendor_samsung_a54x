@@ -1,17 +1,12 @@
 SKIPUNZIP=1
 
 mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia"
-mkdir -p "$WORK_DIR/vendor/tee_asia"
-mkdir -p "$WORK_DIR/vendor/tee_eur"
-mkdir -p "$WORK_DIR/vendor/tee_sea"
-mkdir -p "$WORK_DIR/vendor/firmware/asia"
-mkdir -p "$WORK_DIR/vendor/firmware/eur"
-mkdir -p "$WORK_DIR/vendor/firmware/sea"
-mkdir -p "$WORK_DIR/vendor/tee"
-rm -rf "$WORK_DIR/vendor/tee/*"
-cp -a --preserve=all "$SRC_DIR/../target/a54x/patches/vendor/vendor/etc/"* "$WORK_DIR/vendor/etc"
-cp -a --preserve=all "$SRC_DIR/../target/a54x/patches/vendor/vendor/firmware/"* "$WORK_DIR/vendor/firmware"
-cp -a --preserve=all "$SRC_DIR/../target/a54x/patches/vendor/vendor/tee_*" "$WORK_DIR/vendor"
+
+DELETE_FROM_WORK_DIR "vendor" "tee/*"
+
+cp -a --preserve=all $SRC_DIR/target/a54x/patches/vendor/vendor/etc/* $WORK_DIR/vendor/etc
+cp -a --preserve=all $SRC_DIR/target/a54x/patches/vendor/vendor/firmware/* $WORK_DIR/vendor/firmware
+cp -a --preserve=all $SRC_DIR/target/a54x/patches/vendor/vendor/tee_* $WORK_DIR/vendor
 
 
 WORK_VENDOR_DIR="$WORK_DIR/vendor"
