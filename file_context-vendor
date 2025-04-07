@@ -82,8 +82,8 @@
 /vendor/tee_eur/00000000-0000-0000-0000-4d70536b566e u:object_r:tee_file:s0
 /vendor/tee_eur/00000000-0000-0000-0000-4d7073617574 u:object_r:tee_file:s0
 /vendor/tee_eur/00000000-0000-0000-0000-505256544545 u:object_r:tee_file:s0
-/vendor/tee_eur/00000000-0000-0000-0000-53454d655345 u:object_r:tee_file:s0
 /vendor/tee_eur/00000000-0000-0000-0000-5345435f4652 u:object_r:tee_file:s0
+/vendor/tee_eur/00000000-0000-0000-0000-53454d655345 u:object_r:tee_file:s0
 /vendor/tee_eur/00000000-0000-0000-0000-54412d48444d u:object_r:tee_file:s0
 /vendor/tee_eur/00000000-0000-0000-0000-54496473706c u:object_r:tee_file:s0
 /vendor/tee_eur/00000000-0000-0000-0000-544974684c6c u:object_r:tee_file:s0
@@ -121,8 +121,8 @@
 /vendor/tee_sea/00000000-0000-0000-0000-4d70536b566e u:object_r:tee_file:s0
 /vendor/tee_sea/00000000-0000-0000-0000-4d7073617574 u:object_r:tee_file:s0
 /vendor/tee_sea/00000000-0000-0000-0000-505256544545 u:object_r:tee_file:s0
-/vendor/tee_sea/00000000-0000-0000-0000-53454d655345 u:object_r:tee_file:s0
 /vendor/tee_sea/00000000-0000-0000-0000-5345435f4652 u:object_r:tee_file:s0
+/vendor/tee_sea/00000000-0000-0000-0000-53454d655345 u:object_r:tee_file:s0
 /vendor/tee_sea/00000000-0000-0000-0000-54412d48444d u:object_r:tee_file:s0
 /vendor/tee_sea/00000000-0000-0000-0000-54496473706c u:object_r:tee_file:s0
 /vendor/tee_sea/00000000-0000-0000-0000-544974684c6c u:object_r:tee_file:s0
