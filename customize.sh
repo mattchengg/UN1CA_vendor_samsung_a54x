@@ -1,3 +1,6 @@
+SKIPUNZIP=1
+
+mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia"
 mkdir -p "$WORK_DIR/vendor/tee_asia"
 mkdir -p "$WORK_DIR/vendor/tee_eur"
 mkdir -p "$WORK_DIR/vendor/tee_sea"
