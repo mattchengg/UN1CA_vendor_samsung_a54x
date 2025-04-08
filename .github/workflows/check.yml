@@ -199,6 +199,8 @@ jobs:
             done
             
             # 處理路徑格式
+            touch file_context-vendor-${{ matrix.code }} 
+            touch fs_config-vendor-${{ matrix.code }}
             sed -i "s|tmp_out|/vendor|g" "file_context-vendor-${{ matrix.code }}"
             sed -i "s/tmp_out / /g" "fs_config-vendor-${{ matrix.code }}" && sed -i "s|tmp_out|vendor|g" "fs_config-vendor-${{ matrix.code }}"
             
