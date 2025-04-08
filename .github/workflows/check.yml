@@ -150,6 +150,11 @@ jobs:
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
 
+      - name: Generate vendor files
+        if: env.need_update == 1
+        run: |
+          bash scripts/generate_vendor_files.sh
+
       - name: Update current version
         if: env.need_update == 1
         run: |
@@ -162,7 +167,3 @@ jobs:
           git add vendor
           git commit -m "Update vendor/tee and firmware"
           git push origin ${{github.ref}}
-
-
-
-
