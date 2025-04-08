@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # A54X_CHN_HK
+          # A54X_CHN_TW
           - model: "SM-A5460"
             csc: "BRI"
             omc: "OZS"
