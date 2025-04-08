@@ -5,6 +5,7 @@ on:
   schedule:
     - cron: "0 12 * * *"
   
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -13,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # A54X_CHN_TW
+          # A54X_CHN_HK
           - model: "SM-A5460"
             csc: "BRI"
             omc: "OZS"
@@ -120,7 +121,8 @@ jobs:
           sudo apt-get clean
           sudo rm -rf /usr/local
 
-      - name: Extract specific vendor directories
+
+      - name: Extract vendor and vendor_dlkm partition
         if: env.need_update == 1
         run: |
           tar xvf ${{ env.ap_tar }} super.img.lz4
@@ -131,93 +133,21 @@ jobs:
           mv super_raw.img super.img
           python3 tools/bin/lpunpack.py -p vendor,vendor_dlkm super.img .
           rm super.img
-          
-          # 建立臨時掛載點並掛載 vendor 分區
+          sudo su
           mkdir -p "tmp_out"
           chmod +x ./tools/bin/fuse.erofs
-          
-          if [[ -e vendor.img ]]; then
-            sudo ./tools/bin/fuse.erofs "vendor.img" "tmp_out"
-            
-            # 建立目標目錄
-            mkdir -p vendor/tee_${{ matrix.code }}
-            mkdir -p vendor/firmware/${{ matrix.code }}
-            
-            # 拷貝 tee 目錄內容
-            if [[ -d tmp_out/tee ]]; then
-              cp -a --preserve=all tmp_out/tee/* vendor/tee_${{ matrix.code }}/ 2>/dev/null || true
-            fi
-            
-            # 拷貝 firmware 文件
-            if [[ -d tmp_out/firmware ]]; then
-              cp -a --preserve=all tmp_out/firmware/AIE.bin vendor/firmware/${{ matrix.code }}/ 2>/dev/null || true
-              cp -a --preserve=all tmp_out/firmware/calliope_sram.bin vendor/firmware/${{ matrix.code }}/ 2>/dev/null || true
-              cp -a --preserve=all tmp_out/firmware/mfc_fw.bin vendor/firmware/${{ matrix.code }}/ 2>/dev/null || true
-              cp -a --preserve=all tmp_out/firmware/os.checked.bin vendor/firmware/${{ matrix.code }}/ 2>/dev/null || true
-              cp -a --preserve=all tmp_out/firmware/pablo_icpufw.bin vendor/firmware/${{ matrix.code }}/ 2>/dev/null || true
-              cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}/ 2>/dev/null || true
-            fi
-            
-            
-            # 為特定區域碼生成 file_context 和 fs_config
-            echo "Generating fs_config/file_context for ${{ matrix.code }}"
-            [ -f "file_context-vendor-${{ matrix.code }}" ] && rm "file_context-vendor-${{ matrix.code }}"
-            [ -f "fs_config-vendor-${{ matrix.code }}" ] && rm "fs_config-vendor-${{ matrix.code }}"
-            
-            # 處理 tee 和 firmware 目錄
-            DIRS_TO_PROCESS=()
-            if [[ -d tmp_out/tee ]]; then
-              DIRS_TO_PROCESS+=("tmp_out/tee")
-            fi
-            if [[ -d tmp_out/firmware ]]; then
-              DIRS_TO_PROCESS+=("tmp_out/firmware")
-            fi
-            if [[ -d tmp_out/etc/init ]]; then
-              DIRS_TO_PROCESS+=("tmp_out/etc/init")
-            fi
-            
-            for dir in "${DIRS_TO_PROCESS[@]}"; do
-              if [[ -d "$dir" ]]; then
-                while read -r i; do
-                  {
-                    echo -n "$i "
-                    sudo getfattr -n security.selinux --only-values -h "$i" 2>/dev/null || echo "u:object_r:vendor_file:s0"
-                    echo ""
-                  } >> "file_context-vendor-${{ matrix.code }}"
-                  
-                  case "$i" in
-                    *"run-as" | *"simpleperf_app_runner")
-                      CAPABILITIES="0xc0"
-                      ;;
-                    *)
-                      CAPABILITIES="0x0"
-                      ;;
-                  esac
-                  sudo stat -c "%n %u %g %a capabilities=$CAPABILITIES" "$i" >> "fs_config-vendor-${{ matrix.code }}"
-                done <<< "$(find "$dir" -type f 2>/dev/null)"
-              fi
-            done
-            
-            # 處理路徑格式
-            touch file_context-vendor-${{ matrix.code }} 
-            touch fs_config-vendor-${{ matrix.code }}
-            sed -i "s|tmp_out|/vendor|g" "file_context-vendor-${{ matrix.code }}"
-            sed -i "s/tmp_out / /g" "fs_config-vendor-${{ matrix.code }}" && sed -i "s|tmp_out|vendor|g" "fs_config-vendor-${{ matrix.code }}"
-            
-            # 處理特殊字符
-            sed -i "s/\x0//g" "file_context-vendor-${{ matrix.code }}" \
-              && sed -i 's/\./\\./g' "file_context-vendor-${{ matrix.code }}" \
-              && sed -i 's/\+/\\+/g' "file_context-vendor-${{ matrix.code }}" \
-              && sed -i 's/\$/\\$/g' "file_context-vendor-${{ matrix.code }}" \
-              && sed -i 's/\[/\\[/g' "file_context-vendor-${{ matrix.code }}" \
-              && sed -i 's/\]/\\]/g' "file_context-vendor-${{ matrix.code }}" \
-              && sed -i 's/ u:object_r:/ /g' "file_context-vendor-${{ matrix.code }}"
-            
-            # 卸載並清理
-            sudo fusermount -u tmp_out
-            rm vendor.img
-          fi
-          
+          [[ -e vendor.img ]] && ./tools/bin/fuse.erofs "vendor.img" "tmp_out" 
+          mkdir -p vendor/tee_${{ matrix.code }}
+          mkdir -p vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/tee/* vendor/tee_${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/AIE.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/calliope_sram.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/mfc_fw.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/os.checked.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/pablo_icpufw.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}
+          fusermount -u tmp_out
+          [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
 
       - name: Update current version
@@ -227,14 +157,8 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git pull origin ${{github.ref}} --ff-only
           echo ${{ env.latest_version }} > current.${{ matrix.model }}_${{ matrix.omc }}
-          
-          # 添加並提交版本文件
           git add current.${{ matrix.model }}_${{ matrix.omc }}
           git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
-          
-          # 添加並提交合併後的目錄結構
-          git add vendor/tee_${{ matrix.code }} vendor/firmware/${{ matrix.code }} file_context-${{ matrix.code }} fs_config-${{ matrix.code }}
-          git commit -m "Update vendor files and configs for ${{ matrix.code }} (${{ matrix.model }})"
-          
-          # 推送更改
+          git add vendor
+          git commit -m "Update vendor/tee and firmware"
           git push origin ${{github.ref}}
