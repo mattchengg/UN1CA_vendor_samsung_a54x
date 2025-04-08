@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: "0 12 * * *"
   
-
+  
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -145,7 +145,40 @@ jobs:
           cp -a --preserve=all tmp_out/firmware/mfc_fw.bin vendor/firmware/${{ matrix.code }}
           cp -a --preserve=all tmp_out/firmware/os.checked.bin vendor/firmware/${{ matrix.code }}
           cp -a --preserve=all tmp_out/firmware/pablo_icpufw.bin vendor/firmware/${{ matrix.code }}
-          cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}
+          cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}i
+          echo "Generating fs_config/file_context for vendor.img"
+          [ -f "file_context-$PARTITION" ] && rm "file_context-$PARTITION"
+          [ -f "fs_config-$PARTITION" ] && rm "fs_config-$PARTITION"
+          
+          while read -r i; do
+            {
+              echo -n "$i "
+              $PREFIX getfattr -n security.selinux --only-values -h "$i"
+              echo ""
+            } >> "fs_config-vendor"
+  
+            case "$i" in
+                *"run-as" | *"simpleperf_app_runner")
+                    CAPABILITIES="0xc0"
+                    ;;
+                *)
+                    CAPABILITIES="0x0"
+                    ;;
+            esac
+            $PREFIX stat -c "%n %u %g %a capabilities=$CAPABILITIES" "$i" >> "fs_config-vendor"
+          done <<< "$($PREFIX find "tmp_out")"
+
+          sed -i "s/tmp_out/\/vendor/g" "file_context-vendor"
+          sed -i "s/tmp_out / /g" "fs_config-vendor" \
+              && sed -i "s/tmp_out/vendor/g" "fs_config-vendor"
+          
+          sed -i "s/\x0//g" "file_context-vendor" \
+              && sed -i 's/\./\\./g' "file_context-vendor" \
+              && sed -i 's/\+/\\+/g' "file_context-vendor" \
+              && sed -i 's/\[/\\[/g' "file_context-vendor" \
+          mv file_context-vendor file_context-vendor-${{ matrix.code }}
+          mv fs_config-vendor fs_config-vendor-${{ matrix.code }}
+
           fusermount -u tmp_out
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
@@ -160,5 +193,7 @@ jobs:
           git add current.${{ matrix.model }}_${{ matrix.omc }}
           git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
           git add vendor
-          git commit -m "Update vendor/tee and firmware"
+          git commit -m "Update vendor/tee and fiirmware"
+          gir add file_context-vendor-${{ matrix.code }} fs_config-vendor-${{ matrix.code }}
+          git commit -m "Update file_context and fs_config for vendor"
           git push origin ${{github.ref}}
