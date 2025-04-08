@@ -150,6 +150,12 @@ jobs:
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
 
+      - name: Generate fs_config-vendor and file_context-vendor
+        if: env.need_update == 1
+        run: |
+          chmod +x ./tools/gen.sh
+          ./tools/gen.sh
+
       - name: Update current version
         if: env.need_update == 1
         run: |
@@ -160,9 +166,6 @@ jobs:
           git add current.${{ matrix.model }}_${{ matrix.omc }}
           git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
           git add vendor
-          git commit -m "Update vendor/tee and firmware"
+          git add fs_config-vendor file_context-vendor
+          git commit -m "Update vendor/tee, firmware, fs_config-vendor, and file_context-vendor"
           git push origin ${{github.ref}}
-
-
-
-
