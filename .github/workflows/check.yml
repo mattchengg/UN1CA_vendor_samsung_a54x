@@ -156,7 +156,7 @@ jobs:
               echo -n "$i "
               $PREFIX getfattr -n security.selinux --only-values -h "$i"
               echo ""
-            } >> "fs_config-vendor"
+            } >> "fs_config-vendor-${{ matrix.model }}"
   
             case "$i" in
                 *"run-as" | *"simpleperf_app_runner")
@@ -166,20 +166,18 @@ jobs:
                     CAPABILITIES="0x0"
                     ;;
             esac
-            $PREFIX stat -c "%n %u %g %a capabilities=$CAPABILITIES" "$i" >> "fs_config-vendor"
+            $PREFIX stat -c "%n %u %g %a capabilities=$CAPABILITIES" "$i" >> "fs_config-vendor-${{ matrix.model }}"
           done <<< "$($PREFIX find "tmp_out")"
 
-          sed -i "s/tmp_out/\/vendor/g" "file_context-vendor"
-          sed -i "s/tmp_out / /g" "fs_config-vendor" \
-              && sed -i "s/tmp_out/vendor/g" "fs_config-vendor"
+          sed -i "s/tmp_out/\/vendor/g" "file_context-vendor-${{ matrix.model }}"
+          sed -i "s/tmp_out / /g" "fs_config-vendor-${{ matrix.model }}" \
+              && sed -i "s/tmp_out/vendor/g" "fs_config-vendor-${{ matrix.model }}"
           
-          sed -i "s/\x0//g" "file_context-vendor" \
-              && sed -i 's/\./\\./g' "file_context-vendor" \
-              && sed -i 's/\+/\\+/g' "file_context-vendor" \
-              && sed -i 's/\[/\\[/g' "file_context-vendor" \
-          mv file_context-vendor file_context-vendor-${{ matrix.code }}
-          mv fs_config-vendor fs_config-vendor-${{ matrix.code }}
-
+          sed -i "s/\x0//g" "file_context-vendor-${{ matrix.model }}" \
+              && sed -i 's/\./\\./g' "file_context-vendor-${{ matrix.model }}" \
+              && sed -i 's/\+/\\+/g' "file_context-vendor-${{ matrix.model }}" \
+              && sed -i 's/\[/\\[/g' "file_context-vendor-${{ matrix.model }}" \
+          
           fusermount -u tmp_out
           [[ -e vendor.img ]] && rm vendor.img
           [[ -e vendor_dlkm.img ]] && rm vendor_dlkm.img
