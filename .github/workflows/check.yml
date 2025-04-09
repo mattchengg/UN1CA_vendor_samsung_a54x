@@ -193,6 +193,6 @@ jobs:
           git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
           git add vendor
           git commit -m "Update vendor/tee and fiirmware"
-          gir add file_context-vendor-${{ matrix.code }} fs_config-vendor-${{ matrix.code }}
+          git add file_context-vendor-${{ matrix.code }} fs_config-vendor-${{ matrix.code }}
           git commit -m "Update file_context and fs_config for vendor"
           git push origin ${{github.ref}}
