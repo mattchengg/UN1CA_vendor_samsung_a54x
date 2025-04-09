@@ -147,16 +147,16 @@ jobs:
           cp -a --preserve=all tmp_out/firmware/pablo_icpufw.bin vendor/firmware/${{ matrix.code }}
           cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}i
           echo "Generating fs_config/file_context for vendor.img"
-          [ -f "file_context-vendor-${{ matrix.model }}" ] && rm "file_context-vendor-${{ matrix.model }}"
-          [ -f "fs_config-vendor-${{ matrix.model }}" ] && rm "fs_config-vendor-${{ matrix.model }}"
-          touch file_context-vendor-${{ matrix.model }}
-          touch fs_config-vendor-${{ matrix.model }}
+          [ -f "file_context-vendor-${{ matrix.code }}" ] && rm "file_context-vendor-${{ matrix.code }}"
+          [ -f "fs_config-vendor-${{ matrix.code }}" ] && rm "fs_config-vendor-${{ matrix.code }}"
+          touch file_context-vendor-${{ matrix.code }}
+          touch fs_config-vendor-${{ matrix.code }}
           while read -r i; do
             {
               echo -n "$i "
               getfattr -n security.selinux --only-values -h "$i"
               echo ""
-            } >> "fs_config-vendor-${{ matrix.model }}"
+            } >> "fs_config-vendor-${{ matrix.code }}"
   
             case "$i" in
                 *"run-as" | *"simpleperf_app_runner")
@@ -166,17 +166,17 @@ jobs:
                     CAPABILITIES="0x0"
                     ;;
             esac
-            stat -c "%n %u %g %a capabilities=$CAPABILITIES" "$i" >> "fs_config-vendor-${{ matrix.model }}"
+            stat -c "%n %u %g %a capabilities=$CAPABILITIES" "$i" >> "fs_config-vendor-${{ matrix.code }}"
           done <<< "$(find "tmp_out")"
 
-          sed -i "s/tmp_out/\/vendor/g" "file_context-vendor-${{ matrix.model }}"
-          sed -i "s/tmp_out / /g" "fs_config-vendor-${{ matrix.model }}" \
-              && sed -i "s/tmp_out/vendor/g" "fs_config-vendor-${{ matrix.model }}"
+          sed -i "s/tmp_out/\/vendor/g" "file_context-vendor-${{ matrix.code }}"
+          sed -i "s/tmp_out / /g" "fs_config-vendor-${{ matrix.code }}" \
+              && sed -i "s/tmp_out/vendor/g" "fs_config-vendor-${{ matrix.code }}"
           
-          sed -i "s/\x0//g" "file_context-vendor-${{ matrix.model }}" \
-              && sed -i 's/\./\\./g' "file_context-vendor-${{ matrix.model }}" \
-              && sed -i 's/\+/\\+/g' "file_context-vendor-${{ matrix.model }}" \
-              && sed -i 's/\[/\\[/g' "file_context-vendor-${{ matrix.model }}" \
+          sed -i "s/\x0//g" "file_context-vendor-${{ matrix.code }}" \
+              && sed -i 's/\./\\./g' "file_context-vendor-${{ matrix.code }}" \
+              && sed -i 's/\+/\\+/g' "file_context-vendor-${{ matrix.code }}" \
+              && sed -i 's/\[/\\[/g' "file_context-vendor-${{ matrix.code }}" \
           
           fusermount -u tmp_out
           [[ -e vendor.img ]] && rm vendor.img
