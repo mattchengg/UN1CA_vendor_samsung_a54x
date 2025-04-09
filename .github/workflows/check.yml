@@ -147,9 +147,10 @@ jobs:
           cp -a --preserve=all tmp_out/firmware/pablo_icpufw.bin vendor/firmware/${{ matrix.code }}
           cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}i
           echo "Generating fs_config/file_context for vendor.img"
-          [ -f "file_context-$PARTITION" ] && rm "file_context-$PARTITION"
-          [ -f "fs_config-$PARTITION" ] && rm "fs_config-$PARTITION"
-          
+          [ -f "file_context-vendor-${{ matrix.model }}" ] && rm "file_context-vendor-${{ matrix.model }}"
+          [ -f "fs_config-vendor-${{ matrix.model }}" ] && rm "fs_config-vendor-${{ matrix.model }}"
+          touch file_context-vendor-${{ matrix.model }}
+          touch fs_config-vendor-${{ matrix.model }}
           while read -r i; do
             {
               echo -n "$i "
