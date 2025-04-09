@@ -1,6 +1,9 @@
 SKIPUNZIP=1
 
 mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia" 2>/dev/null || true
+for file in AIE.bin mfc_fw.bin pablo_icpufw.bin calliope_sram.bin os.checked.bin vts.bin; do
+  mv -f "$WORK_DIR/vendor/firmware/$file" "$WORK_DIR/vendor/firmware/asia" 2>/dev/null || true
+done
 
 if ! grep -q "tee_blobs" "$WORK_DIR/configs/file_context-vendor"; then
     {
