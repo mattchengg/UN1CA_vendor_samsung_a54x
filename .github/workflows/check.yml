@@ -145,7 +145,7 @@ jobs:
           cp -a --preserve=all tmp_out/firmware/mfc_fw.bin vendor/firmware/${{ matrix.code }}
           cp -a --preserve=all tmp_out/firmware/os.checked.bin vendor/firmware/${{ matrix.code }}
           cp -a --preserve=all tmp_out/firmware/pablo_icpufw.bin vendor/firmware/${{ matrix.code }}
-          cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}i
+          cp -a --preserve=all tmp_out/firmware/vts.bin vendor/firmware/${{ matrix.code }}
           echo "Generating fs_config/file_context for vendor.img"
           [ -f "file_context-vendor-${{ matrix.code }}" ] && rm "file_context-vendor-${{ matrix.code }}"
           [ -f "fs_config-vendor-${{ matrix.code }}" ] && rm "fs_config-vendor-${{ matrix.code }}"
