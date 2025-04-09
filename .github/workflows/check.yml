@@ -190,9 +190,9 @@ jobs:
           git pull origin ${{github.ref}} --ff-only
           echo ${{ env.latest_version }} > current.${{ matrix.model }}_${{ matrix.omc }}
           git add current.${{ matrix.model }}_${{ matrix.omc }}
-          git commit -m "${{ matrix.model }}: ${{ env.latest_version }}"
+          git commit -m "${{ matrix.model }}: ${{ env.latest_version }}" || echo "No changes to commit"
           git add vendor
-          git commit -m "Update vendor/tee and fiirmware"
+          git commit -m "Update vendor/tee and fiirmware" || echo "No changes to commit"
           git add file_context-vendor-${{ matrix.code }} fs_config-vendor-${{ matrix.code }}
-          git commit -m "Update file_context and fs_config for vendor"
+          git commit -m "Update file_context and fs_config for vendor" || echo "No changes to commit"
           git push origin ${{github.ref}}
