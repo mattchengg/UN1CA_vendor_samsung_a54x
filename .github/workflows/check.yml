@@ -44,6 +44,7 @@ jobs:
           latest_modem=`echo $latest | cut -d'/' -f3`
           current=`cat current.${{ matrix.model }}_${{ matrix.omc }}` || need_update=1
           [[ $latest != $current ]] && need_update=1
+          need_update=1
           echo "latest_version=$latest" >> $GITHUB_ENV
           echo "latest_shortversion=$latest_short" >> $GITHUB_ENV
           echo "latest_cscversion=$latest_csc" >> $GITHUB_ENV
@@ -156,7 +157,7 @@ jobs:
               echo -n "$i "
               getfattr -n security.selinux --only-values -h "$i"
               echo ""
-            } >> "fs_config-vendor-${{ matrix.code }}"
+            } >> "file_context-vendor-${{ matrix.code }}"
   
             case "$i" in
                 *"run-as" | *"simpleperf_app_runner")
