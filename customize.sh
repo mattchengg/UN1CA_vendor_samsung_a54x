@@ -1,6 +1,6 @@
 SKIPUNZIP=1
 
-#mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia" 2>/dev/null || true
+mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia" 2>/dev/null || true
 
 if ! grep -q "tee_blobs" "$WORK_DIR/configs/file_context-vendor"; then
     {
@@ -22,7 +22,7 @@ FILES=("file_context-vendor" "fs_config-vendor")
 for region in "${REGIONS[@]}"; do
     for file in "${FILES[@]}"; do
         target_file="$WORK_DIR/configs/$file"
-        source_file="${file}-${region}"
+        source_file="$SRC_DIR/target/a54x/patches/vendor/${file}-${region}"
 
         tee_tag="tee_${region}"
         firmware_path="/vendor/firmware/${region}/"
