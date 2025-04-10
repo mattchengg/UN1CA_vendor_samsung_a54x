@@ -36,7 +36,7 @@ for region in "${REGIONS[@]}"; do
     for file in "${FILES[@]}"; do
         target_file="$WORK_DIR/configs/$file"
         source_file="$SRC_DIR/target/a54x/patches/vendor/${file}-${region}"
-        echo "$REGIONS $FILES"
+        echo "$region $file"
 
         tee_tag="tee_${region}"
         firmware_path="/vendor/firmware/${region}/"
