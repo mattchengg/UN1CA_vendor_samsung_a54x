@@ -8,10 +8,10 @@ for file in AIE.bin mfc_fw.bin pablo_icpufw.bin calliope_sram.bin os.checked.bin
 done
 
 for region in eur sea; do
-  cp -a --preserve=all "$SDR_DIR/target/a54x/patches/vendor/vendor/tee_$region" "$WORK_DIR/vendor" || true
+  cp -a --preserve=all "$SRC_DIR/target/a54x/patches/vendor/vendor/tee_$region" "$WORK_DIR/vendor" || true
   for file in AIE.bin mfc_fw.bin pablo_icpufw.bin calliope_sram.bin os.checked.bin vts.bin; do
     mkdir -p "$WORK_DIR/vendor/firmware/$region"
-    cp -a --preserve=all "$SDR_DIR/target/a54x/patches/vendor/vendor/firmware/$region/$file" "$WORK_DIR/vendor/firmware/$region" || true
+    cp -a --preserve=all "$SRC_DIR/target/a54x/patches/vendor/vendor/firmware/$region/$file" "$WORK_DIR/vendor/firmware/$region" || true
   done
 done
 
@@ -36,9 +36,7 @@ for region in "${REGIONS[@]}"; do
     for file in "${FILES[@]}"; do
         target_file="$WORK_DIR/configs/$file"
         source_file="$SRC_DIR/target/a54x/patches/vendor/${file}-${region}"
-        echo "$REGIONS"
-        echo "$SRC_DIR"
-        ls $SRC_DIR
+        echo "$REGIONS $FILES"
 
         tee_tag="tee_${region}"
         firmware_path="/vendor/firmware/${region}/"
