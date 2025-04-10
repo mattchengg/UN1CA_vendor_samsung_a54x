@@ -1,8 +1,18 @@
 SKIPUNZIP=1
 
-mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia" 2>/dev/null || true
+mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia" || true
+
 for file in AIE.bin mfc_fw.bin pablo_icpufw.bin calliope_sram.bin os.checked.bin vts.bin; do
-  mv -f "$WORK_DIR/vendor/firmware/$file" "$WORK_DIR/vendor/firmware/asia" 2>/dev/null || true
+  mkdir -p "$WORK_DIR/vendor/firmware/asia"
+  mv -f "$WORK_DIR/vendor/firmware/$file" "$WORK_DIR/vendor/firmware/asia" || true
+done
+for region in eur sea; do
+  for file in AIE.bin mfc_fw.bin pablo_icpufw.bin calliope_sram.bin os.checked.bin vts.bin; do
+    mkdir -p "$WORK_DIR/vendor/firmware/$region"
+    mkdir -p "$WORK_DIR/vendor/tee_$region"
+    cp -a --preserve=all "$SDR_DIR/target/a54x/patches/vendor/vendor/tee_$region/*" "$WORK_DIR/vendor/tee_$region" || true
+    cp -a --preserve=all "$SDR_DIR/target/a54x/patches/vendor/vendor/firmware/$file" "$WORK_DIR/vendor/firmware/$region" || true
+  done
 done
 
 if ! grep -q "tee_blobs" "$WORK_DIR/configs/file_context-vendor"; then
