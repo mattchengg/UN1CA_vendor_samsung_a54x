@@ -18,14 +18,12 @@ done
 if ! grep -q "tee_blobs" "$WORK_DIR/configs/file_context-vendor"; then
     {
         echo "/vendor/etc/init/tee_blobs\.rc u:object_r:vendor_configs_file:s0"
-        echo "/vendor/tee u:object_r:tee_file:s0"
     } >> "$WORK_DIR/configs/file_context-vendor"
 fi
 
 if ! grep -q "tee_blobs" "$WORK_DIR/configs/fs_config-vendor"; then
     {
         echo "vendor/etc/init/tee_blobs.rc 0 0 644 capabilities=0x0"
-        echo "vendor/tee 0 2000 755 capabilities=0x0"
     } >> "$WORK_DIR/configs/fs_config-vendor"
 fi
 
@@ -39,14 +37,25 @@ for region in "${REGIONS[@]}"; do
         echo "$region $file"
 
         tee_tag="tee_${region}"
-        firmware_path="/vendor/firmware/${region}/"
+        firmware_path="vendor/firmware/${region}/"
 
         if ! grep -q "vendor/$tee_tag" "$target_file"; then
             grep -E "AIE|mfc_fw|pablo_icpufw|calliope_sram|os\.checked|vts|vendor/tee" "$source_file" \
-            | sed -e "s/\btee\b/$tee_tag/g" -e "s|/vendor/firmware/|$firmware_path|g" \
+            | sed -e "s/\btee\b/$tee_tag/g" -e "s|vendor/firmware/|$firmware_path|g" \
             >> "$target_file"
         fi
     done
+    if ! grep -q "tee_blobs" "$WORK_DIR/configs/file_context-vendor"; then
+        {
+            echo "/vendor/firmware/$region u:object_r:vendor_fw_file:s0"
+        } >> "$WORK_DIR/configs/file_context-vendor"
+    fi
+
+    if ! grep -q "tee_blobs" "$WORK_DIR/configs/fs_config-vendor"; then
+        {
+            echo "vendor/firmware/$region 0 2000 755 capabilities=0x0"
+        } >> "$WORK_DIR/configs/fs_config-vendor"
+    fi
 done
 
 if ! grep -q "tee_file (dir (mounton" "$WORK_DIR/vendor/etc/selinux/vendor_sepolicy.cil"; then
