@@ -28,7 +28,7 @@ fi
 
 if ! grep -q "tee_blobs" "$WORK_DIR/configs/fs_config-vendor"; then
     {
-        echo "vendor/etc/init/tee_blobs.rc 0 0 644 capabilities=0x0
+        echo "vendor/etc/init/tee_blobs.rc 0 0 644 capabilities=0x0"
     } >> "$WORK_DIR/configs/fs_config-vendor"
 fi
 
@@ -61,8 +61,6 @@ for region in "${REGIONS[@]}"; do
         } >> "$WORK_DIR/configs/fs_config-vendor"
     fi
 done
-cat $WORK_DIR/configs/fs_config-vendor
-cat $WORK_DIR/configs/file_context-vendor
 
 if ! grep -q "tee_file (dir (mounton" "$WORK_DIR/vendor/etc/selinux/vendor_sepolicy.cil"; then
     echo "(allow init_33_0 tee_file (dir (mounton)))" >> "$WORK_DIR/vendor/etc/selinux/vendor_sepolicy.cil"
