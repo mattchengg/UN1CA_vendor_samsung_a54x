@@ -21,6 +21,7 @@ for region in eur sea; do
 done
 
 if ! grep -q "tee_blobs" "$WORK_DIR/configs/file_context-vendor"; then
+    echo "Add tee_blobs.rc to file_context-vendor/fs_config-vendor"
     {
         echo "/vendor/etc/init/tee_blobs\.rc u:object_r:vendor_configs_file:s0"
     } >> "$WORK_DIR/configs/file_context-vendor"
@@ -51,7 +52,6 @@ for region in "${REGIONS[@]}"; do
     done
     echo "/vendor/firmware/$region u:object_r:vendor_fw_file:s0" >> "$WORK_DIR/configs/file_context-vendor"
     echo "vendor/firmware/$region 0 2000 755 capabilities=0x0" >> "$WORK_DIR/configs/fs_config-vendor"
-    fi
 done
 
 if ! grep -q "tee_file (dir (mounton" "$WORK_DIR/vendor/etc/selinux/vendor_sepolicy.cil"; then
