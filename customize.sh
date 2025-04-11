@@ -1,22 +1,22 @@
 SKIPUNZIP=1
 
 echo "Moving vendor/tee to vendor/tee_asia"
-mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia" || true
+mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia"
 mkdir -p "$WORK_DIR/vendor/tee" 
 
 echo "Moving firmware files to asia directory"
 for file in AIE.bin mfc_fw.bin pablo_icpufw.bin calliope_sram.bin os.checked.bin vts.bin; do
   mkdir -p "$WORK_DIR/vendor/firmware/asia"
-  mv -f "$WORK_DIR/vendor/firmware/$file" "$WORK_DIR/vendor/firmware/asia" || true
+  mv -f "$WORK_DIR/vendor/firmware/$file" "$WORK_DIR/vendor/firmware/asia"
 done
 
 for region in eur sea; do
   echo "Copying files for $region regions"
-  cp -a --preserve=all "$SRC_DIR/target/a54x/patches/vendor/vendor/tee_$region" "$WORK_DIR/vendor" || true
+  cp -a --preserve=all "$SRC_DIR/target/a54x/patches/vendor/vendor/tee_$region" "$WORK_DIR/vendor"
   for file in AIE.bin mfc_fw.bin pablo_icpufw.bin calliope_sram.bin os.checked.bin vts.bin; do
     echo "Copying $region firmware/$file to $WORK_DIR/vendor/firmware/$region"
     mkdir -p "$WORK_DIR/vendor/firmware/$region"
-    cp -a --preserve=all "$SRC_DIR/target/a54x/patches/vendor/vendor/firmware/$region/$file" "$WORK_DIR/vendor/firmware/$region" || true
+    cp -a --preserve=all "$SRC_DIR/target/a54x/patches/vendor/vendor/firmware/$region/$file" "$WORK_DIR/vendor/firmware/$region"
   done
 done
 
