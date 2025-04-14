@@ -22,17 +22,20 @@ for region in eur sea; do
 done
 
 cp -a --preserve=all "$SRC_DIR/target/a54x/patches/vendor/etc/init/vendor_blobs.rc" "$WORK_DIR/vendor/etc/init"
+cp -a --preserve=all "$SRC_DIR/target/a54x/patches/vendor/etc/init/init.debug.rc" "$WORK_DIR/vendor/etc/init"
 
 if ! grep -q "vendor_blobs" "$WORK_DIR/configs/file_context-vendor"; then
     echo "Add vendor_blobs.rc to file_context-vendor/fs_config-vendor"
     {
         echo "/vendor/etc/init/vendor_blobs\.rc u:object_r:vendor_configs_file:s0"
+        echo "/vendor/etc/init/init.debug\.rc u:object_r:vendor_configs_file:s0"
     } >> "$WORK_DIR/configs/file_context-vendor"
 fi
 
 if ! grep -q "vendor_blobs" "$WORK_DIR/configs/fs_config-vendor"; then
     {
         echo "vendor/etc/init/vendor_blobs.rc 0 0 644 capabilities=0x0"
+        echo "vendor/etc/init/init.debug.rc 0 0 644 capabilities=0x0"
     } >> "$WORK_DIR/configs/fs_config-vendor"
 fi
 
