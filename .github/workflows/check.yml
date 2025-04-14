@@ -27,7 +27,7 @@ jobs:
           # A54X_SEA_OPEN
           - model: "SM-A546E"
             csc: "EGY"
-            omc: "ODM"
+            omc: "OJM"
             code: "sea"
     steps:
       - name: Checkout repo
