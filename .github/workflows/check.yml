@@ -26,7 +26,7 @@ jobs:
             code: "eur"
           # A54X_SEA_OPEN
           - model: "SM-A546E"
-            csc: "INS"
+            csc: "EGY"
             omc: "ODM"
             code: "sea"
     steps:
