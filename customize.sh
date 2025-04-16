@@ -1,13 +1,13 @@
 SKIPUNZIP=1
 
 echo "Moving vendor/tee to vendor/tee_asia"
-mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_sea"
+mv -f "$WORK_DIR/vendor/tee" "$WORK_DIR/vendor/tee_asia"
 mkdir -p "$WORK_DIR/vendor/tee" 
 
 echo "Moving firmware files to asia directory"
 for file in AIE.bin mfc_fw.bin pablo_icpufw.bin calliope_sram.bin os.checked.bin vts.bin; do
-  mkdir -p "$WORK_DIR/vendor/firmware/sea"
-  mv -f "$WORK_DIR/vendor/firmware/$file" "$WORK_DIR/vendor/firmware/sea"
+  mkdir -p "$WORK_DIR/vendor/firmware/asia"
+  mv -f "$WORK_DIR/vendor/firmware/$file" "$WORK_DIR/vendor/firmware/asia"
   touch "$WORK_DIR/vendor/firmware/$file"
 done
 
