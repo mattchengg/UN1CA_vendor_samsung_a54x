@@ -109,6 +109,7 @@
 /vendor/bin/hw/rild u:object_r:rild_exec:s0
 /vendor/bin/hw/samsung\.hardware\.media\.c2@1\.2-service u:object_r:mediacodec_exec:s0
 /vendor/bin/hw/samsung\.software\.media\.c2@1\.0-service u:object_r:mediacodec_exec:s0
+/vendor/bin/hw/secaudiohalaidl u:object_r:hal_audio_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.authfw@1\.0-service u:object_r:hal_authfw_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.biometrics\.face-service u:object_r:hal_face_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.biometrics\.fingerprint-service u:object_r:hal_fingerprint_default_exec:s0
@@ -118,7 +119,7 @@
 /vendor/bin/hw/vendor\.samsung\.hardware\.hyper-service u:object_r:hal_hyper_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.light-service u:object_r:hal_light_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.security\.drk@2\.0-service u:object_r:hal_drk_default_exec:s0
-/vendor/bin/hw/vendor\.samsung\.hardware\.security\.skpm@1\.0-service u:object_r:hal_skpm_default_exec:s0
+/vendor/bin/hw/vendor\.samsung\.hardware\.security\.skpm-service u:object_r:hal_skpm_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.security\.widevine\.keyprov-service u:object_r:hal_wvkprov_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.security\.wsm-service u:object_r:hal_wsm_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.snap-service u:object_r:snap_hidl_exec:s0
@@ -127,7 +128,7 @@
 /vendor/bin/hw/vendor\.samsung\.hardware\.tlc\.blockchain@1\.0-service u:object_r:hal_blockchain_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.tlc\.hdm@1\.1-service u:object_r:hal_hdm_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.tlc\.iccc@1\.0-service u:object_r:hal_iccc_default_exec:s0
-/vendor/bin/hw/vendor\.samsung\.hardware\.tlc\.kg@1\.1-service u:object_r:hal_kgta_default_exec:s0
+/vendor/bin/hw/vendor\.samsung\.hardware\.tlc\.kg-service u:object_r:hal_kgta_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.tlc\.mpos_tui@1\.0-service u:object_r:hal_mpostui_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.tlc\.payment@1\.0-service u:object_r:hal_payment_default_exec:s0
 /vendor/bin/hw/vendor\.samsung\.hardware\.tlc\.ucm@2\.0-service u:object_r:hal_ucmtlc_default_exec:s0
@@ -295,7 +296,7 @@
 /vendor/bin/whoami u:object_r:vendor_file:s0
 /vendor/bin/wlbtd u:object_r:wlbtd_exec:s0
 /vendor/bin/wpa_cli u:object_r:vendor_file:s0
-/vendor/bin/wpal u:object_r:vendor_file:s0
+/vendor/bin/wpal u:object_r:wpal_exec:s0
 /vendor/bin/wvkprov u:object_r:wvkprov_exec:s0
 /vendor/bin/xargs u:object_r:vendor_file:s0
 /vendor/bin/xxd u:object_r:vendor_file:s0
@@ -333,14 +334,20 @@
 /vendor/etc/dqe/DQE_coef_data\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_atc\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_atc_ana6710_a35x\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/dqe/calib_data_atc_db7f2010b_a26x\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/dqe/calib_data_atc_db7f2010b_m36x\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_atc_nt36532_gtactive5\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_atc_s6e3fc5_a35x\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/dqe/calib_data_atc_s6e3fc5_m35x\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_bypass\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_colormode0\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_colormode0_ana6710_a35x\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/dqe/calib_data_colormode0_db7f2010b_a26x\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/dqe/calib_data_colormode0_db7f2010b_m36x\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_colormode0_nt36532_gtactive5\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_colormode0_s6e3fc5_a35x\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_colormode0_s6e3fc5_a54x\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/dqe/calib_data_colormode0_s6e3fc5_m35x\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_colormode0_sw83109_m54x\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_colormode0_sw83109c_m54x\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/dqe/calib_data_colortemp\.xml u:object_r:vendor_configs_file:s0
@@ -434,6 +441,7 @@
 /vendor/etc/init/power-default-sec\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/samsung\.hardware\.media\.c2@1\.2-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/samsung\.software\.media\.c2@1\.0-service\.rc u:object_r:vendor_configs_file:s0
+/vendor/etc/init/secaudiohalaidl\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/snap_utility\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/snaplite_utility\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/teegris\.rc u:object_r:vendor_configs_file:s0
@@ -448,7 +456,7 @@
 /vendor/etc/init/vendor\.samsung\.hardware\.security\.engmode@1\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.security\.fkeymaster-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.security\.hdcp\.wifidisplay-default\.rc u:object_r:vendor_configs_file:s0
-/vendor/etc/init/vendor\.samsung\.hardware\.security\.skpm@1\.0-service\.rc u:object_r:vendor_configs_file:s0
+/vendor/etc/init/vendor\.samsung\.hardware\.security\.skpm-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.security\.ssu-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.security\.widevine\.keyprov-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.snap-lazy\.rc u:object_r:vendor_configs_file:s0
@@ -457,13 +465,14 @@
 /vendor/etc/init/vendor\.samsung\.hardware\.tlc\.blockchain@1\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.tlc\.hdm@1\.1-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.tlc\.iccc@1\.0-service\.rc u:object_r:vendor_configs_file:s0
-/vendor/etc/init/vendor\.samsung\.hardware\.tlc\.kg@1\.1-service\.rc u:object_r:vendor_configs_file:s0
+/vendor/etc/init/vendor\.samsung\.hardware\.tlc\.kg-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.tlc\.mpos_tui@1\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.tlc\.payment@1\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.tlc\.ucm@2\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.vibrator-default\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.wifi@2\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.rilchip\.slsi\.rc u:object_r:vendor_configs_file:s0
+/vendor/etc/init/vendor\.samsung\.rild\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung_slsi\.hardware\.ExynosHWCServiceTW@1\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung_slsi\.hardware\.SbwcDecompService@1\.0-service\.rc u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung_slsi\.hardware\.enn@1\.0-lazy-service\.rc u:object_r:vendor_configs_file:s0
@@ -501,10 +510,9 @@
 /vendor/etc/midas/SRIBMidas_aiDEBLUR_V140_FP32\.tflite u:object_r:vendor_configs_file:s0
 /vendor/etc/midas/SRIBMidas_aiMOIREREMOVE_Coarse_V900_FP32\.caffemodel u:object_r:vendor_configs_file:s0
 /vendor/etc/midas/SRIBMidas_aiMOIREREMOVE_Fine_V900_FP32\.caffemodel u:object_r:vendor_configs_file:s0
-/vendor/etc/midas/SRIBMidas_aiUPSCALER_1X_V200_FP32\.tflite u:object_r:vendor_configs_file:s0
-/vendor/etc/midas/SRIBMidas_aiUPSCALER_2X_V210_FP32\.tflite u:object_r:vendor_configs_file:s0
-/vendor/etc/midas/SRIBMidas_aiUPSCALER_3X_V210_FP32\.tflite u:object_r:vendor_configs_file:s0
-/vendor/etc/midas/SRIBMidas_aiUPSCALER_4X_V210_FP32\.tflite u:object_r:vendor_configs_file:s0
+/vendor/etc/midas/SRIBMidas_aiUPSCALER_2X_LITE_V100_INT8\.tflite u:object_r:vendor_configs_file:s0
+/vendor/etc/midas/SRIBMidas_aiUPSCALER_3X_LITE_V100_INT8\.tflite u:object_r:vendor_configs_file:s0
+/vendor/etc/midas/SRIBMidas_aiUPSCALER_4X_LITE_V100_INT8\.tflite u:object_r:vendor_configs_file:s0
 /vendor/etc/midas/SRIB_aiHDR_Global_V430_1024\.caffemodel u:object_r:vendor_configs_file:s0
 /vendor/etc/midas/SRIB_aiHDR_Local_V430_1024\.caffemodel u:object_r:vendor_configs_file:s0
 /vendor/etc/midas/deflare u:object_r:vendor_configs_file:s0
@@ -518,6 +526,7 @@
 /vendor/etc/mixer_usb_white\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/mkshrc u:object_r:vendor_configs_file:s0
 /vendor/etc/mtu-conf\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/mvno_list\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/nfc u:object_r:vendor_configs_file:s0
 /vendor/etc/nfc/libnfc-nxp_RF\.conf u:object_r:vendor_configs_file:s0
 /vendor/etc/passwd u:object_r:vendor_configs_file:s0
@@ -564,12 +573,15 @@
 /vendor/etc/permissions/android\.software\.vulkan\.deqp\.level\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/permissions/com\.nxp\.mifare\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/permissions/handheld_core_hardware\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/permissions/vendor\.samsung\.hardware\.telephony\.cdma_excluded\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/permissions/vendor\.samsung\.hardware\.telephony\.gsm\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/permissions/vendor\.samsung\.hardware\.telephony\.satellite\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/plmn_delta\.bin u:object_r:vendor_configs_file:s0
 /vendor/etc/plmn_delta_attaio\.bin u:object_r:vendor_configs_file:s0
 /vendor/etc/plmn_delta_hktw\.bin u:object_r:vendor_configs_file:s0
+/vendor/etc/plmn_delta_ltn\.bin u:object_r:vendor_configs_file:s0
 /vendor/etc/plmn_delta_usagsm\.bin u:object_r:vendor_configs_file:s0
-/vendor/etc/plmn_se13\.bin u:object_r:vendor_configs_file:s0
+/vendor/etc/plmn_se13_prebuilt\.bin u:object_r:vendor_configs_file:s0
 /vendor/etc/portrait_data u:object_r:vendor_configs_file:s0
 /vendor/etc/portrait_data/SRIB_HumanSegVideoLite_INT8_V101_ex8835_enn422_vendor\.nnc u:object_r:vendor_configs_file:s0
 /vendor/etc/portrait_data/single_bokeh_feature_vendor\.json u:object_r:vendor_configs_file:s0
@@ -600,6 +612,9 @@
 /vendor/etc/saiv/image_understanding/db/aic_detector u:object_r:vendor_configs_file:s0
 /vendor/etc/saiv/image_understanding/db/aic_detector/aic_detector_cnn\.info u:object_r:vendor_configs_file:s0
 /vendor/etc/saiv/image_understanding/db/aic_detector/aic_detector_cnn\.tflite u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding/db/hs_segmenter u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding/db/hs_segmenter/hs_segmenter\.info u:object_r:vendor_configs_file:s0
+/vendor/etc/saiv/image_understanding/db/hs_segmenter/hs_segmenter\.tflite u:object_r:vendor_configs_file:s0
 /vendor/etc/saiv/image_understanding/db/slens_classifier u:object_r:vendor_configs_file:s0
 /vendor/etc/saiv/image_understanding/db/slens_classifier/slens_classifier_cnn\.tflite u:object_r:vendor_configs_file:s0
 /vendor/etc/saiv/image_understanding/db/slens_detector u:object_r:vendor_configs_file:s0
@@ -629,14 +644,8 @@
 /vendor/etc/sensors u:object_r:vendor_configs_file:s0
 /vendor/etc/sensors/hals\.conf u:object_r:vendor_configs_file:s0
 /vendor/etc/singletake u:object_r:vendor_configs_file:s0
-/vendor/etc/singletake/aifilter u:object_r:vendor_configs_file:s0
-/vendor/etc/singletake/aifilter/filter\.polarr\.db u:object_r:vendor_configs_file:s0
-/vendor/etc/singletake/aifilter/render\.polarr\.db u:object_r:vendor_configs_file:s0
-/vendor/etc/singletake/aifilter/scene\.polarr\.db u:object_r:vendor_configs_file:s0
-/vendor/etc/singletake/bestmoment u:object_r:vendor_configs_file:s0
-/vendor/etc/singletake/bestmoment/facedetV2\.polarr\.db u:object_r:vendor_configs_file:s0
-/vendor/etc/singletake/bestmoment/facedetV3\.polarr\.db u:object_r:vendor_configs_file:s0
-/vendor/etc/singletake/bestmoment/scoreV2\.polarr\.db u:object_r:vendor_configs_file:s0
+/vendor/etc/singletake/ClarityScorer u:object_r:vendor_configs_file:s0
+/vendor/etc/singletake/ClarityScorer/ClarityScorer\.tflite u:object_r:vendor_configs_file:s0
 /vendor/etc/situation_audio_policy_volumes_sec\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/snap_gpu_kernel_64\.bin u:object_r:vendor_configs_file:s0
 /vendor/etc/snaplite_cache\.bin u:object_r:vendor_configs_file:s0
@@ -672,6 +681,7 @@
 /vendor/etc/vintf/manifest/nxp\.android\.hardware\.nfc@1\.2-service\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/power-samsung\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/sec_c2_manifest_default0_1_2\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/vintf/manifest/secaudiohalaidl_manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vaultkeeper_manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.authfw@1\.0-manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.biometrics\.fingerprint-service\.xml u:object_r:vendor_configs_file:s0
@@ -681,6 +691,7 @@
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.radio_manifest_2_33\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.security\.fkeymaster-service\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.security\.hdcp\.wifidisplay-default\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.security\.skpm-manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.security\.ssu-manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.security\.widevine\.keyprov-service\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.security\.wsm\.service-manifest\.xml u:object_r:vendor_configs_file:s0
@@ -689,7 +700,7 @@
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.thermal@1\.0-manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.tlc\.hdm@1\.1-manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.tlc\.iccc@1\.0-manifest\.xml u:object_r:vendor_configs_file:s0
-/vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.tlc\.kg@1\.1-manifest\.xml u:object_r:vendor_configs_file:s0
+/vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.tlc\.kg-manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.tlc\.mpos_tui@1\.0-manifest\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.vibrator-default\.xml u:object_r:vendor_configs_file:s0
 /vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.wifi@2\.0-service\.xml u:object_r:vendor_configs_file:s0
@@ -906,6 +917,8 @@
 /vendor/firmware/RTP108_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP109_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP10_RTP\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/RTP110_RTP\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/RTP111_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP11_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP12_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP13_RTP\.bin u:object_r:vendor_fw_file:s0
@@ -917,6 +930,7 @@
 /vendor/firmware/RTP1_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP24_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP25_RTP\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/RTP27_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP28_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP29_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP2_RTP\.bin u:object_r:vendor_fw_file:s0
@@ -926,6 +940,9 @@
 /vendor/firmware/RTP33_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP34_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP35_RTP\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/RTP36_RTP\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/RTP37_RTP\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/RTP38_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP39_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP3_RTP\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/RTP40_RTP\.bin u:object_r:vendor_fw_file:s0
@@ -998,7 +1015,6 @@
 /vendor/firmware/abox_tplg\.conf u:object_r:vendor_fw_file:s0
 /vendor/firmware/avsyncmix\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/aw8622x_haptic\.bin u:object_r:vendor_fw_file:s0
-/vendor/firmware/aw8622x_osc_rtp_12K_10s\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/calliope_dram\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/calliope_sram\.bin u:object_r:vendor_fw_file:s0
 /vendor/firmware/camera_tilt_calibration_info_1_2 u:object_r:vendor_fw_file:s0
@@ -1138,6 +1154,7 @@
 /vendor/lib/libFace_Landmark_API\.camera\.samsung\.so u:object_r:same_process_hal_file:s0
 /vendor/lib/libFrucSSMLib\.so u:object_r:vendor_file:s0
 /vendor/lib/libGLES_mali\.so u:object_r:vendor_file:s0
+/vendor/lib/libHDRMetaGenerator\.so u:object_r:vendor_file:s0
 /vendor/lib/libHprFace_GAE_api\.camera\.samsung\.so u:object_r:same_process_hal_file:s0
 /vendor/lib/libHprVisualEffect\.so u:object_r:vendor_file:s0
 /vendor/lib/libHpr_RecGAE_cvFeature_v1\.0\.camera\.samsung\.so u:object_r:same_process_hal_file:s0
@@ -1226,6 +1243,7 @@
 /vendor/lib/libhwjpeg\.so u:object_r:vendor_file:s0
 /vendor/lib/libhypermotion_core\.so u:object_r:vendor_file:s0
 /vendor/lib/libhypermotion_interface\.so u:object_r:vendor_file:s0
+/vendor/lib/libhypervintf\.so u:object_r:vendor_file:s0
 /vendor/lib/libion_exynos\.so u:object_r:same_process_hal_file:s0
 /vendor/lib/liblastaboxmsg\.so u:object_r:vendor_file:s0
 /vendor/lib/liblivefocus_capture_engine\.so u:object_r:vendor_file:s0
@@ -1245,6 +1263,8 @@
 /vendor/lib/libprotobuf-cpp-full-3\.9\.1\.so u:object_r:vendor_file:s0
 /vendor/lib/libprotobuf-cpp-lite-3\.9\.1\.so u:object_r:vendor_file:s0
 /vendor/lib/libqfp_sensortest\.so u:object_r:vendor_file:s0
+/vendor/lib/librechdr10plus\.plugin\.so u:object_r:vendor_file:s0
+/vendor/lib/librechdr10plus\.so u:object_r:vendor_file:s0
 /vendor/lib/librecordalive\.so u:object_r:vendor_file:s0
 /vendor/lib/libsavsac\.so u:object_r:vendor_file:s0
 /vendor/lib/libsavscmn\.so u:object_r:same_process_hal_file:s0
@@ -1319,6 +1339,7 @@
 /vendor/lib/libwifi-hal\.so u:object_r:vendor_file:s0
 /vendor/lib/libwpa_client\.so u:object_r:vendor_file:s0
 /vendor/lib/libwrappergps\.so u:object_r:vendor_file:s0
+/vendor/lib/libwsmd_functions\.so u:object_r:vendor_file:s0
 /vendor/lib/libzoomroi\.samsung\.so u:object_r:vendor_file:s0
 /vendor/lib/mali_symlink\.so u:object_r:vendor_file:s0
 /vendor/lib/mediacas u:object_r:vendor_file:s0
@@ -1353,6 +1374,7 @@
 /vendor/lib/vendor\.samsung\.hardware\.bluetooth\.audio-V1-ndk\.so u:object_r:vendor_file:s0
 /vendor/lib/vendor\.samsung\.hardware\.bluetooth\.audio-impl\.so u:object_r:vendor_file:s0
 /vendor/lib/vendor\.samsung\.hardware\.gnss-V3-ndk\.so u:object_r:vendor_file:s0
+/vendor/lib/vendor\.samsung\.hardware\.hyper-V2-ndk\.so u:object_r:vendor_file:s0
 /vendor/lib/vendor\.samsung\.hardware\.tlc\.blockchain@1\.0-impl\.so u:object_r:vendor_file:s0
 /vendor/lib/vendor\.samsung\.hardware\.tlc\.blockchain@1\.0\.so u:object_r:vendor_file:s0
 /vendor/lib/vendor\.samsung\.hardware\.tlc\.hdm@1\.0\.so u:object_r:vendor_file:s0
@@ -1488,6 +1510,7 @@
 /vendor/lib64/hw/gatekeeper\.s5e8835\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/gralloc\.default\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/hw/hwcomposer\.s5e8835\.so u:object_r:vendor_file:s0
+/vendor/lib64/hw/libsecaudiohal_aidl\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/local_time\.default\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/power\.default\.so u:object_r:vendor_file:s0
 /vendor/lib64/hw/sound_trigger\.primary\.s5e8835\.so u:object_r:vendor_file:s0
@@ -1514,6 +1537,7 @@
 /vendor/lib64/libFaceService\.so u:object_r:vendor_file:s0
 /vendor/lib64/libFace_Landmark_API\.camera\.samsung\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libGLES_mali\.so u:object_r:vendor_file:s0
+/vendor/lib64/libHDRMetaGenerator\.so u:object_r:vendor_file:s0
 /vendor/lib64/libHDRVerifier_v1\.camera\.samsung\.so u:object_r:vendor_file:s0
 /vendor/lib64/libHandGesture\.camera\.samsung\.so u:object_r:vendor_file:s0
 /vendor/lib64/libHprFace_GAE_api\.camera\.samsung\.so u:object_r:same_process_hal_file:s0
@@ -1532,8 +1556,8 @@
 /vendor/lib64/libSamsungPostProcessConvertor\.so u:object_r:vendor_file:s0
 /vendor/lib64/libSceneDetector_v1\.camera\.samsung\.so u:object_r:vendor_file:s0
 /vendor/lib64/libSecC2ComponentStore\.so u:object_r:vendor_file:s0
-/vendor/lib64/libSemDataProps\.so u:object_r:vendor_file:s0
-/vendor/lib64/libSemTelephonyProps\.so u:object_r:vendor_file:s0
+/vendor/lib64/libVendorSemDataProps\.so u:object_r:vendor_file:s0
+/vendor/lib64/libVendorSemTelephonyProps\.so u:object_r:vendor_file:s0
 /vendor/lib64/lib_SamsungRec_07010\.so u:object_r:vendor_file:s0
 /vendor/lib64/lib_SoundAlive_3DPosition_ver202\.so u:object_r:vendor_file:s0
 /vendor/lib64/lib_SoundAlive_AlbumArt_ver105\.so u:object_r:vendor_file:s0
@@ -1681,6 +1705,8 @@
 /vendor/lib64/libimgproc_sw\.unifunc@common\.so u:object_r:vendor_file:s0
 /vendor/lib64/libion_exynos\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libir\.so u:object_r:vendor_file:s0
+/vendor/lib64/libisa\.so u:object_r:vendor_file:s0
+/vendor/lib64/libisa_generator\.so u:object_r:vendor_file:s0
 /vendor/lib64/libjpegencoder_sw\.unifunc\.so u:object_r:vendor_file:s0
 /vendor/lib64/libkeymaster4_1support\.so u:object_r:vendor_file:s0
 /vendor/lib64/libkeymaster4support\.so u:object_r:vendor_file:s0
@@ -1699,8 +1725,9 @@
 /vendor/lib64/libmpbase\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libmultiobject_tracker\.so u:object_r:vendor_file:s0
 /vendor/lib64/libnbaio_mono\.so u:object_r:vendor_file:s0
+/vendor/lib64/libncp_wrapper\.so u:object_r:vendor_file:s0
 /vendor/lib64/libnpu_compiler\.so u:object_r:vendor_file:s0
-/vendor/lib64/liboemcrypto\.so u:object_r:vendor_file:s0
+/vendor/lib64/liboemcrypto\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/liboemservice\.so u:object_r:vendor_file:s0
 /vendor/lib64/libpadm\.so u:object_r:same_process_hal_file:s0
 /vendor/lib64/libprofileparamstorage\.so u:object_r:vendor_file:s0
@@ -1708,6 +1735,8 @@
 /vendor/lib64/libprotobuf-cpp-lite-3\.9\.1\.so u:object_r:vendor_file:s0
 /vendor/lib64/libpuresoftkeymasterdevice\.so u:object_r:vendor_file:s0
 /vendor/lib64/libqfp_sensortest\.so u:object_r:vendor_file:s0
+/vendor/lib64/librechdr10plus\.plugin\.so u:object_r:vendor_file:s0
+/vendor/lib64/librechdr10plus\.so u:object_r:vendor_file:s0
 /vendor/lib64/librecordalive\.so u:object_r:vendor_file:s0
 /vendor/lib64/libril_sem\.so u:object_r:vendor_file:s0
 /vendor/lib64/librilutils\.so u:object_r:vendor_file:s0
@@ -1835,6 +1864,7 @@
 /vendor/lib64/unihal_scenario\.so u:object_r:vendor_file:s0
 /vendor/lib64/unihal_uniplugin@1\.0\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.frameworks\.security\.dsms-V1-ndk\.so u:object_r:vendor_file:s0
+/vendor/lib64/vendor\.samsung\.hardware\.audio-V1-ndk\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.audio@1\.0\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.authfw@1\.0\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.biometrics\.face-V3-ndk\.so u:object_r:vendor_file:s0
@@ -1861,7 +1891,7 @@
 /vendor/lib64/vendor\.samsung\.hardware\.security\.engmode@1\.0\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.security\.fkeymaster-V1-ndk\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.security\.hdcp\.wifidisplay-V2-ndk\.so u:object_r:vendor_file:s0
-/vendor/lib64/vendor\.samsung\.hardware\.security\.skpm@1\.0\.so u:object_r:vendor_file:s0
+/vendor/lib64/vendor\.samsung\.hardware\.security\.skpm-V1-ndk\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.security\.ssu-V1-ndk\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.security\.vaultkeeper@2\.0\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.security\.widevine\.keyprov-V1-ndk\.so u:object_r:vendor_file:s0
@@ -1879,8 +1909,7 @@
 /vendor/lib64/vendor\.samsung\.hardware\.tlc\.hdm@1\.1\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.tlc\.iccc@1\.0-impl\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.tlc\.iccc@1\.0\.so u:object_r:vendor_file:s0
-/vendor/lib64/vendor\.samsung\.hardware\.tlc\.kg@1\.0\.so u:object_r:vendor_file:s0
-/vendor/lib64/vendor\.samsung\.hardware\.tlc\.kg@1\.1\.so u:object_r:vendor_file:s0
+/vendor/lib64/vendor\.samsung\.hardware\.tlc\.kg-V2-ndk\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.tlc\.mpos_tui@1\.0\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.tlc\.payment@1\.0-impl\.so u:object_r:vendor_file:s0
 /vendor/lib64/vendor\.samsung\.hardware\.tlc\.payment@1\.0\.so u:object_r:vendor_file:s0
@@ -1922,13 +1951,9 @@
 /vendor/saiv/image_understanding u:object_r:vendor_file:s0
 /vendor/saiv/image_understanding/db u:object_r:vendor_snap_file:s0
 /vendor/saiv/image_understanding/db/aig_classifier u:object_r:vendor_snap_file:s0
-/vendor/saiv/image_understanding/db/aig_classifier/aig_classifier_cnn\.tf u:object_r:vendor_snap_file:s0
-/vendor/saiv/image_understanding/db/aig_detector u:object_r:vendor_snap_file:s0
-/vendor/saiv/image_understanding/db/aig_detector/aig_detector_cnn\.tflite u:object_r:vendor_snap_file:s0
+/vendor/saiv/image_understanding/db/aig_classifier/aig_classifier_cnn\.tflite u:object_r:vendor_snap_file:s0
 /vendor/saiv/image_understanding/db/sce_detector u:object_r:vendor_snap_file:s0
 /vendor/saiv/image_understanding/db/sce_detector/sce_detector_cnn\.tflite u:object_r:vendor_snap_file:s0
-/vendor/saiv/image_understanding/db/srr_interaction u:object_r:vendor_snap_file:s0
-/vendor/saiv/image_understanding/db/srr_interaction/srr_interaction_cnn\.tflite u:object_r:vendor_snap_file:s0
 /vendor/saiv/sr_engine_model u:object_r:vendor_file:s0
 /vendor/saiv/sr_engine_model/All_mnetv2_mini_p256x256_b16_00834_20210809\.tflite u:object_r:vendor_file:s0
 /vendor/saiv/sr_engine_model/nima_crop_pair_v0\.0\.2_mobilenetv2\.tflite u:object_r:vendor_file:s0
@@ -1949,6 +1974,7 @@
 /vendor/tee/00000000-0000-0000-0000-4d5053545549 u:object_r:tee_file:s0
 /vendor/tee/00000000-0000-0000-0000-4d704e434954 u:object_r:tee_file:s0
 /vendor/tee/00000000-0000-0000-0000-4d70536b566e u:object_r:tee_file:s0
+/vendor/tee/00000000-0000-0000-0000-4d7073534d43 u:object_r:tee_file:s0
 /vendor/tee/00000000-0000-0000-0000-4d7073617574 u:object_r:tee_file:s0
 /vendor/tee/00000000-0000-0000-0000-505256544545 u:object_r:tee_file:s0
 /vendor/tee/00000000-0000-0000-0000-5345435f4652 u:object_r:tee_file:s0
